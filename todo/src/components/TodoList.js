@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import Todo from './Todo';
+import TodoForm from './TodoForm';
 
 const initialState = {
   todos: [
@@ -26,6 +27,16 @@ function reducer(state, action) {
           return todo;
         })
       };
+    case 'ADD TODO':
+      console.log('adding todo in the dispatch');
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          { description: action.payload,
+            completed: false }
+        ]
+      };
     default:
       return state;
   }
@@ -40,6 +51,7 @@ function TodoList() {
       {state.todos.map(todo => (
         <Todo key={todo.description} todo={todo} />
       ))}
+      <TodoForm dispatch={dispatch}/>
     </div>
   );
 }
