@@ -4,13 +4,11 @@ function TodoForm({ dispatch }) {
   const [description, setDescription] = useState('');
 
   function handleChange(e) {
-    console.log('handling change', e.target.value);
     setDescription(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('adding todo in the form submit callback', description);
     dispatch({ type: 'ADD TODO', payload: description });
     setDescription('');
   }

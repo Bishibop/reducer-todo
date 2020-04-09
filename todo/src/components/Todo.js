@@ -10,9 +10,16 @@ function Todo({ todo, dispatch }) {
   };
 
   return (
-    <div onClick={handleClick} className={`completed-${todo.completed}`}>
-      {todo.description}
-    </div>
+    <>
+      <div className={`todo completed-${todo.completed}`} onClick={handleClick}>
+        {todo.description}
+      </div>
+      { todo.completionTime && 
+        <div className='todo-time'>
+          Completed at: {todo.completionTime}
+        </div>
+      }
+    </>
   );
 }
 

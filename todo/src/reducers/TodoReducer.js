@@ -1,9 +1,12 @@
+import moment from 'moment';
+
 const initialState = {
   todos: [
     { description: 'Go to the grocery store',
       completed: false },
     { description: 'Walk the dog',
-      completed: true },
+      completed: true,
+      completionTime: moment().format('h:mm:ss a') },
     { description: 'Feed the dog',
       completed: false },
     { description: 'Play with the dog',
@@ -20,6 +23,7 @@ function reducer(state, action) {
         todos: state.todos.map(todo => {
           if (todo.description === action.payload) {
             todo.completed = true;
+            todo.completionTime = moment().format('h:mm:ss a');
           }
           return todo;
         })
@@ -31,6 +35,7 @@ function reducer(state, action) {
         todos: state.todos.map(todo => {
           if (todo.description === action.payload) {
             todo.completed = false;
+            delete todo.completionTime;
           }
           return todo;
         })
